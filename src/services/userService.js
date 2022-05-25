@@ -1,8 +1,9 @@
 const { StatusCodes } = require('http-status-codes');
-const { userInsert } = require('../models/userModel');
+const { userInsert, findUserByEmail } = require('../models/userModel');
 const { userSchema } = require('../utils/joiSchemas');
 const errorContructor = require('../utils/function/errorHandler');
 const { encrypt } = require('../utils/function/crypto');
+const { decodeToken } = require('../utils/auth/jwt');
 
 const registerUserValidation = async (name, email, password) => {
   const { error } = userSchema.validate({
@@ -16,4 +17,16 @@ const registerUserValidation = async (name, email, password) => {
   await userInsert(name, email, encryptedPassword, iv);
 };
 
-module.exports = { registerUserValidation };
+const getUserValidation = async (authorization) => {
+  const userEmail = decodeToken(authorization);
+
+  if (!userEmail) throw errorContructor(StatusCodes.UNAUTHORIZED, 'Invalid token');
+
+  const user = await findUserByEmail(userEmail);
+
+  if (!user) throw errorContructor(StatusCodes.NOT_FOUND, 'User not found');
+
+  return { user };
+};
+
+module.exports = { registerUserValidation, getUserValidation };

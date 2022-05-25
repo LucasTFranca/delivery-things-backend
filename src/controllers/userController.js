@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes');
-const { registerUserValidation } = require('../services/userService');
+const { registerUserValidation, getUserValidation } = require('../services/userService');
 
 const registerUser = async (req, res, next) => {
   try {
@@ -14,4 +14,17 @@ const registerUser = async (req, res, next) => {
   }
 };
 
-module.exports = { registerUser };
+const getUser = async (req, res, next) => {
+  try {
+    const { authorization } = req.headers;
+
+    const { user } = await getUserValidation(authorization);
+
+    return res.status(StatusCodes.OK).json(user);
+  } catch (error) {
+    console.log(`USER GET ${error}`);
+    return next(error);
+  }
+};
+
+module.exports = { registerUser, getUser };

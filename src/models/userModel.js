@@ -9,4 +9,10 @@ const userInsert = async (name, email, password, passwordIv) => {
   });
 };
 
-module.exports = { userInsert };
+const findUserByEmail = async (email) => {
+  const user = await knex('users').where({ email }).first();
+
+  return { name: user.name, email: user.email };
+};
+
+module.exports = { userInsert, findUserByEmail };
