@@ -18,7 +18,7 @@ const registerUserValidation = async (name, email, password) => {
 };
 
 const getUserValidation = async (authorization) => {
-  const userEmail = decodeToken(authorization);
+  const { email: userEmail } = decodeToken(authorization);
 
   if (!userEmail) throw errorContructor(StatusCodes.UNAUTHORIZED, 'Invalid token');
 
@@ -26,7 +26,7 @@ const getUserValidation = async (authorization) => {
 
   if (!user) throw errorContructor(StatusCodes.NOT_FOUND, 'User not found');
 
-  return { user };
+  return { name: user.name, email: user.email };
 };
 
 module.exports = { registerUserValidation, getUserValidation };
