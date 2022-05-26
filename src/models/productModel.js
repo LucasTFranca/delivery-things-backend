@@ -11,4 +11,10 @@ const productInsert = async (title, description, value, image) => {
   return reponse[0];
 };
 
-module.exports = { productInsert };
+const productsFind = async () => {
+  const products = await knex('products').select('*');
+
+  return products;
+};
+
+module.exports = { productInsert, productsFind };

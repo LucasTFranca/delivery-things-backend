@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes');
-const { productInsert } = require('../models/productModel');
+const { productInsert, productsFind } = require('../models/productModel');
 const productToUserInsert = require('../models/productToUser');
 const { findUserByEmail } = require('../models/userModel');
 const { decodeToken } = require('../utils/auth/jwt');
@@ -24,4 +24,10 @@ const registerProductValidation = async (title, description, value, image, autho
   await productToUserInsert(productId, userId);
 };
 
-module.exports = { registerProductValidation };
+const getAllProductsValidation = async () => {
+  const products = await productsFind();
+
+  return products;
+};
+
+module.exports = { registerProductValidation, getAllProductsValidation };

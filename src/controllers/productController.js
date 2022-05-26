@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes');
-const { registerProductValidation } = require('../services/productService');
+const { registerProductValidation, getAllProductsValidation } = require('../services/productService');
 
 const registerProduct = async (req, res, next) => {
   try {
@@ -21,4 +21,15 @@ const registerProduct = async (req, res, next) => {
   }
 };
 
-module.exports = { registerProduct };
+const getAllProducts = async (req, res, next) => {
+  try {
+    const products = await getAllProductsValidation();
+
+    return res.status(StatusCodes.OK).json(products);
+  } catch (error) {
+    console.log(`GET ALL PRODUCTS ${error}`);
+    return next(error);
+  }
+};
+
+module.exports = { registerProduct, getAllProducts };
