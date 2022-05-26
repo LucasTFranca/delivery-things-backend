@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes');
-const { productInsert, productsFind } = require('../models/productModel');
+const { productInsert, productsFind, productFindByTitle } = require('../models/productModel');
 const productToUserInsert = require('../models/productToUser');
 const { findUserByEmail } = require('../models/userModel');
 const { decodeToken } = require('../utils/auth/jwt');
@@ -16,6 +16,9 @@ const registerProductValidation = async (title, description, value, image, autho
   });
 
   if (error) throw errorContructor(StatusCodes.BAD_REQUEST, error.message);
+
+  const product = await productFindByTitle(title);
+  if (product) throw errorContructor(StatusCodes.BAD_REQUEST, 'Product already exists');
 
   const { id: userId } = await findUserByEmail(userEmail);
 

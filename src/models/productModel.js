@@ -17,4 +17,10 @@ const productsFind = async () => {
   return products;
 };
 
-module.exports = { productInsert, productsFind };
+const productFindByTitle = async (title) => {
+  const response = knex('products').where('title', title).first();
+
+  return response;
+};
+
+module.exports = { productInsert, productsFind, productFindByTitle };
