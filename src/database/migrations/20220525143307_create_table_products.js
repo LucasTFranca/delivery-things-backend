@@ -5,6 +5,7 @@
 exports.up = (knex) => knex.schema.createTable('products', (table) => {
   table.increments('id').primary();
   table.string('title').notNullable();
+  table.string('description').notNullable();
   table.decimal('value').notNullable();
   table.string('image').notNullable();
 });
