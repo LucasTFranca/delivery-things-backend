@@ -34,7 +34,7 @@ const getAllProducts = async (req, res, next) => {
 
 const getImageInformation = async (req, res, next) => {
   try {
-    return res.status(StatusCodes.OK).json({ image: req.file.filename });
+    return res.status(StatusCodes.OK).json({ image: `http://localhost:4000/image/${req.file.filename}` });
   } catch (error) {
     console.log(`GET IMAGE INFORMATION ${error}`);
     return next(error);

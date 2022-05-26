@@ -12,6 +12,6 @@ router.use('/login', logindRouter);
 
 router.use('/product', productRouter);
 
-router.use('/images', imageRouter);
+router.use('/image', imageRouter);
 
 module.exports = router;
