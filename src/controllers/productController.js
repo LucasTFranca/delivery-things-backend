@@ -32,4 +32,13 @@ const getAllProducts = async (req, res, next) => {
   }
 };
 
-module.exports = { registerProduct, getAllProducts };
+const getImageInformation = async (req, res, next) => {
+  try {
+    return res.status(StatusCodes.OK).json({ image: req.file.filename });
+  } catch (error) {
+    console.log(`GET IMAGE INFORMATION ${error}`);
+    return next(error);
+  }
+};
+
+module.exports = { registerProduct, getAllProducts, getImageInformation };
