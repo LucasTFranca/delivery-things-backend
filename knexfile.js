@@ -13,8 +13,8 @@ module.exports = {
       host: process.env.HOST,
       port: 3306,
       database: 'coinsure',
-      user: 'root',
-      password: 'Trybe@1234',
+      user: 'Seu-usuario-aqui',
+      password: 'Sua-senha-aqui',
     },
     migrations: {
       tableName: 'knex_migrations',
