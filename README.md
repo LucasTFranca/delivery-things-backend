@@ -40,7 +40,7 @@ npm install
 
 ## Configuração
 
-Vá no arquivo `knexfile.js` e modifique o valor da chave `user`` e `password`, pelo
+Vá no arquivo `knexfile.js` e modifique o valor da chave `user` e `password`, pelo
 seu usuário e senha do MySQL, segue abaixo o objeto que você irá modificar:
 
 ```bash
