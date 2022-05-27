@@ -66,6 +66,12 @@ module.exports = {
 
 ## Como Utilizar
 
+Antes de começar a utilizar api, crie o banco de dados como o comando:
+
+```bash
+npx knex migrate:latest
+```
+
 Para começar a utilizar a api, digite o comando abaixo:
 
 ```bash
