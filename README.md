@@ -66,6 +66,8 @@ module.exports = {
 
 ## Como Utilizar
 
+Antes de criar as migrations crie um db com o nome: `coinsure`
+
 Antes de começar a utilizar api, crie o banco de dados como o comando:
 
 ```bash
