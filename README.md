@@ -68,7 +68,7 @@ module.exports = {
 
 Antes de criar as migrations crie um db com o nome: `coinsure`
 
-Antes de começar a utilizar api, crie o banco de dados como o comando:
+Agora para começar a utilizar a api, crie as migrations com o comando:
 
 ```bash
 npx knex migrate:latest
